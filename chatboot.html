@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Chatbot Completo com Voz, Tema, Memória e Matemática</title>
+  <style>
+  /* Estilos Globais */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f4f4f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+  overflow: hidden;
+  transition: background-color 0.3s ease;
+}
+
+body.dark-mode {
+  background: #181818;
+  color: #ece5dd;
+}
+
+/* Contêiner Principal do Chat */
+#chat-container {
+  width: 100%;
+  max-width: 700px;
+  height: 90vh;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.3s ease;
+}
+
+body.dark-mode #chat-container {
+  background-color: #1f1f1f;
+}
+
+/* Caixa de Chat */
+#chat {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  max-height: 100%;
+  font-size: 16px;
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+}
+
+#chat p {
+  margin-bottom: 16px;
+  padding: 12px;
+  border-radius: 20px;
+  max-width: 70%;
+  font-size: 14px;
+  word-wrap: break-word;
+}
+
+#chat p.bot {
+  background: #e1f5fe;
+  text-align: left;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+#chat p.user {
+  background: #dcf8c6;
+  text-align: right;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Animações */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Barra de Entrada */
+#user-input {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background: #ffffff;
+  border-top: 1px solid #ddd;
+  border-radius: 0 0 20px 20px;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
+}
+
+#user-input input {
+  flex: 1;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 25px;
+  background-color: #f5f5f5;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+#user-input input:focus {
+  background-color: #ffffff;
+  border-color: #4CAF50;
+  outline: none;
+}
+
+#user-input button {
+  padding: 12px 18px;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-left: 12px;
+  transition: background-color 0.3s ease;
+}
+
+#user-input button:hover {
+  background-color: #45a049;
+}
+
+#voice-btn {
+  padding: 12px 18px;
+  background-color: #2196F3;
+  border-radius: 50%;
+  margin-left: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#voice-btn:hover {
+  background-color: #1976D2;
+}
+
+/* Botão de Tema */
+#theme-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 12px;
+  cursor: pointer;
+  font-size: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+body.dark-mode #theme-btn {
+  background-color: #dfe1e2;
+  color: #333;
+}
+
+#theme-btn:hover {
+  background-color: #45a049;
+}
+
+/* Estilos de Timestamp */
+.timestamp {
+  font-size: 12px;
+  color: #888;
+  margin-top: 8px;
+  text-align: center;
+}
+
+  </style>
+</head>
+<body>
+
+<button id="theme-btn" onclick="toggleTheme()">🌙</button>
+
+<div id="chat-container">
+  <div id="chat"></div>
+  <div id="user-input">
+    <input type="text" id="input" placeholder="Digite ou fale...">
+    <button onclick="handleInput()">Enviar</button>
+    <button id="voice-btn" onclick="startListening()">🎤</button>
+  </div>
+</div>
+
+<script>
+  const chat = document.getElementById('chat');
+  const themeBtn = document.getElementById('theme-btn');
+  const body = document.body;
+
+  // Fala do bot
+  function speak(text) {
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'pt-BR';
+    speechSynthesis.speak(utterance);
+  }
+
+  // Adiciona mensagem no chat e salva histórico
+  function appendMessage(sender, message, save = true) {
+    const p = document.createElement('p');
+    p.innerHTML = `<strong>${sender}:</strong> ${message}`;
+    p.classList.add(sender === 'Você' ? 'user' : 'bot');
+    p.classList.add('fade-in');
+    chat.appendChild(p);
+    chat.scrollTop = chat.scrollHeight;
+
+    if (save) {
+      const history = JSON.parse(localStorage.getItem('historico')) || [];
+      history.push({
+        sender,
+        message,
+        timestamp: new Date().toLocaleString()
+      });
+      localStorage.setItem('historico', JSON.stringify(history));
+      localStorage.setItem('ultimaMensagem', new Date().toLocaleString());
+    }
+  }
+
+  // Comportamento principal do chat
+  function handleInput(fromVoice = false) {
+    const input = document.getElementById('input');
+    const text = input.value.trim();
+    if (!text) return;
+
+    appendMessage('Você', text);
+    input.value = '';
+
+    // Ensinar algo
+    if (text.toLowerCase().startsWith('ensinar:')) {
+      const [pergunta, resposta] = text.slice(8).split('?').map(p => p.trim());
+      if (pergunta && resposta) {
+        localStorage.setItem(pergunta.toLowerCase(), resposta);
+        const confirmacao = `Aprendi que "${pergunta}" é "${resposta}"`;
+        appendMessage('Bot', confirmacao);
+        speak(confirmacao);
+      } else {
+        const erro = 'Formato inválido. Use: ensinar: pergunta? resposta';
+        appendMessage('Bot', erro);
+        speak(erro);
+      }
+
+    // Resolver expressão matemática
+    } else if (text.toLowerCase().startsWith('resolver:')) {
+      const expressao = text.slice(9).trim();
+
+      try {
+        if (!/^[\d\s+\-*/().^%MathsqrtcosintanlogexpPIE]+$/.test(expressao.replaceAll(',', '.'))) {
+          throw new Error("Expressão contém caracteres inválidos.");
+        }
+
+        const resultado = eval(expressao);
+        const resposta = `Resultado: ${resultado}`;
+        appendMessage('Bot', resposta);
+        speak(resposta);
+      } catch (e) {
+        const erro = 'Não consegui resolver essa expressão. Verifique a sintaxe.';
+        appendMessage('Bot', erro);
+        speak(erro);
+      }
+
+    // Pergunta comum
+    } else {
+      const resposta = localStorage.getItem(text.toLowerCase());
+      if (resposta) {
+        appendMessage('Bot', resposta);
+        speak(resposta);
+      } else {
+        const aviso = 'Não sei responder isso ainda. Use "ensinar: pergunta? resposta" ou "resolver: conta"';
+        appendMessage('Bot', aviso);
+        speak(aviso);
+      }
+    }
+  }
+
+  // Entrada por voz
+  function startListening() {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      alert('Reconhecimento de voz não é suportado neste navegador.');
+      return;
+    }
+
+    const recognition = new SpeechRecognition();
+    recognition.lang = 'pt-BR';
+    recognition.start();
+
+    recognition.onstart = () => {
+      appendMessage('Sistema', '🎙️ Ouvindo...', false);
+    };
+
+    recognition.onresult = function(event) {
+      const resultado = event.results[0][0].transcript;
+      document.getElementById('input').value = resultado;
+      handleInput(true);
+    };
+
+    recognition.onerror = function() {
+      appendMessage('Erro', 'Falha no reconhecimento de voz.', false);
+    };
+  }
+
+  // Tema claro/escuro
+  function toggleTheme() {
+    body.classList.toggle('dark-mode');
+    const isDark = body.classList.contains('dark-mode');
+    themeBtn.innerText = isDark ? '🌞' : '🌙';
+    localStorage.setItem('tema', isDark ? 'escuro' : 'claro');
+  }
+
+  // Carregar configurações anteriores
+  window.onload = function () {
+    const temaSalvo = localStorage.getItem('tema');
+    if (temaSalvo === 'escuro') {
+      body.classList.add('dark-mode');
+      themeBtn.innerText = '🌞';
+    }
+
+    const historico = JSON.parse(localStorage.getItem('historico')) || [];
+    if (historico.length > 0) {
+      const inicio = localStorage.getItem('inicioConversa');
+      const fim = localStorage.getItem('ultimaMensagem');
+      appendMessage('📅', `Início da conversa: ${inicio}`, false);
+      historico.forEach(item => {
+        appendMessage(item.sender, item.message, false);
+      });
+      appendMessage('⏰', `Última interação: ${fim}`, false);
+    }
+  };
+</script>
+
+</body>
+</html>
