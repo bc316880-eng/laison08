@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Laison</title>
+
+<link rel="stylesheet" href="chatboot.css">
+
+</head>
+
+
+<body>
+
+
+
+<header>
+
+
+<div class="perfil">
+
+
+<img id="fotoPersonagem"
+src="https://via.placeholder.com/60">
+
+
+<div>
+
+<h2 id="nomePersonagem">
+Naruto
+</h2>
+
+
+<p id="animePersonagem">
+Naruto
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="saldo">
+
+sms:
+
+<span id="mensagensDisponiveis">
+30  
+</span>
+
+
+
+<button onclick="abrirPagamento()">
+
++
+
+</button>
+
+
+</div>
+
+
+
+</header>
+
+
+
+
+
+<!-- ESCOLHER PERSONAGEM -->
+
+<section class="escolher">
+
+
+<select id="personagem" onchange="trocarPersonagem()">
+
+
+
+<option value="Naruto">
+Naruto Uzumaki
+</option>
+
+
+<option value="Goku">
+Goku
+</option>
+
+
+<option value="Luffy">
+Luffy
+</option>
+
+
+<option value="Gojo">
+Gojo Satoru
+</option>
+
+
+<option value="Sasuke">
+Sasuke Uchiha
+</option>
+
+
+<option value="Itachi">
+Itachi Uchiha
+</option>
+
+
+<option value="Levi">
+Levi Ackerman
+</option>
+
+
+<option value="Eren">
+Eren Yeager
+</option>
+
+
+<option value="Mikasa">
+Mikasa Ackerman
+</option>
+
+
+<option value="Tanjiro">
+Tanjiro Kamado
+</option>
+
+
+<option value="Nezuko">
+Nezuko Kamado
+</option>
+
+
+<option value="Zenitsu">
+Zenitsu
+</option>
+
+
+<option value="Killua">
+Killua Zoldyck
+</option>
+
+
+<option value="Gon">
+Gon Freecss
+</option>
+
+
+<option value="Light">
+Light Yagami
+</option>
+
+
+<option value="L">
+L
+</option>
+
+
+<option value="Saitama">
+Saitama
+</option>
+
+
+<option value="Kakashi">
+Kakashi Hatake
+</option>
+
+
+<option value="Vegeta">
+Vegeta
+</option>
+
+
+<option value="Ichigo">
+Ichigo Kurosaki
+</option>
+
+<option value="Kira">Kira Yoshikage</option>
+<option value="Jotaro">Jotaro Kujo</option>
+<option value="Dio">Dio Brando</option>
+<option value="Giorno">Giorno Giovanna</option>
+
+<option value="Denji">Denji</option>
+<option value="Power">Power</option>
+<option value="Makima">Makima</option>
+<option value="Aki">Aki Hayakawa</option>
+
+<option value="Shinji">Shinji Ikari</option>
+<option value="Asuka">Asuka Langley</option>
+<option value="Rei">Rei Ayanami</option>
+
+<option value="Kirito">Kirito</option>
+<option value="Asuna">Asuna Yuuki</option>
+<option value="Sinon">Sinon</option>
+
+<option value="Meliodas">Meliodas</option>
+<option value="Ban">Ban</option>
+<option value="King">King</option>
+<option value="Escanor">Escanor</option>
+<option value="Elizabeth">Elizabeth Liones</option>
+
+<option value="Subaru">Subaru Natsuki</option>
+<option value="Emilia">Emilia</option>
+<option value="Rem">Rem</option>
+<option value="Ram">Ram</option>
+
+<option value="Aqua">Aqua</option>
+<option value="Kazuma">Kazuma Satou</option>
+<option value="Megumin">Megumin</option>
+
+<option value="Shinra">Shinra Kusakabe</option>
+<option value="Arthur">Arthur Boyle</option>
+
+<option value="Holo">Holo</option>
+
+<option value="Saber">Saber Artoria</option>
+<option value="Rin">Rin Tohsaka</option>
+<option value="Gilgamesh">Gilgamesh</option>
+
+<option value="Accelerator">Accelerator</option>
+<option value="Mikoto">Mikoto Misaka</option>
+
+<option value="Anos">Anos Voldigoad</option>
+
+<option value="Rimuru">Rimuru Tempest</option>
+<option value="Milim">Milim Nava</option>
+
+<option value="Ainz">Ainz Ooal Gown</option>
+
+<option value="Natsu">Natsu Dragneel</option>
+<option value="Lucy">Lucy Heartfilia</option>
+<option value="Erza">Erza Scarlet</option>
+<option value="Gray">Gray Fullbuster</option>
+
+<option value="Yusuke">Yusuke Urameshi</option>
+<option value="Hiei">Hiei</option>
+
+<option value="Inuyasha">Inuyasha</option>
+<option value="Kagome">Kagome</option>
+
+<option value="Vash">Vash The Stampede</option>
+<option value="Spike">Spike Spiegel</option>
+<option value="Faye">Faye Valentine</option>
+
+<option value="Alucard">Alucard</option>
+<option value="Integra">Integra Hellsing</option>
+
+<option value="Guts">Guts</option>
+<option value="Griffith">Griffith</option>
+<option value="Casca">Casca</option>
+
+<option value="Thorfinn">Thorfinn</option>
+<option value="Askeladd">Askeladd</option>
+<option value="Canute">Canute</option>
+
+<option value="Mob">Shigeo Mob</option>
+<option value="Reigen">Reigen Arataka</option>
+
+<option value="Koro">Koro Sensei</option>
+<option value="Nagisa">Nagisa Shiota</option>
+
+<option value="Senku">Senku Ishigami</option>
+<option value="Taiju">Taiju Oki</option>
+
+<option value="Shiro">Shiro</option>
+<option value="Sora">Sora</option>
+
+<option value="Akame">Akame</option>
+<option value="Esdeath">Esdeath</option>
+<option value="Tatsumi">Tatsumi</option>
+
+<option value="Kirua">Kirua Zoldyck</option>
+
+<option value="Maka">Maka Albarn</option>
+<option value="Soul">Soul Evans</option>
+
+<option value="Ryuko">Ryuko Matoi</option>
+
+<option value="Kenshin">Kenshin Himura</option>
+<option value="Kaoru">Kaoru Kamiya</option>
+
+<option value="Yato">Yato</option>
+<option value="Hiyori">Hiyori Iki</option>
+
+<option value="Tomura">Tomura Shigaraki</option>
+<option value="Dabi">Dabi</option>
+
+<option value="Neji">Neji Hyuga</option>
+<option value="RockLee">Rock Lee</option>
+
+<option value="Shikamaru">Shikamaru Nara</option>
+<option value="Sakura">Sakura Haruno</option>
+
+<option value="Kuroko">Kuroko Tetsuya</option>
+<option value="Kagami">Taiga Kagami</option>
+
+<option value="HinataHaikyuu">Shoyo Hinata</option>
+<option value="Kageyama">Tobio Kageyama</option>
+
+<option value="RinOkumura">Rin Okumura</option>
+
+<option value="Allen">Allen Walker</option>
+
+<option value="Yugi">Yugi Muto</option>
+<option value="Seto">Seto Kaiba</option>
+
+<option value="Ash">Ash Ketchum</option>
+<option value="Pikachu">Pikachu</option>
+<option value="Gabimaru">Gabimaru</option>
+<option value="Sagiri">Yamada Asaemon Sagiri</option>
+<option value="Yuzuriha">Yuzuriha</option>
+<option value="Shion">Shion</option>
+<option value="Tenza">Tenza</option>
+<option value="Toma">Toma</option>
+
+<option value="Senku">Senku Ishigami</option>
+<option value="Kohaku">Kohaku</option>
+<option value="Chrome">Chrome</option>
+<option value="Gen">Gen Asagiri</option>
+<option value="Tsukasa">Tsukasa Shishio</option>
+<option value="Ryusui">Ryusui Nanami</option>
+<option value="Ukyo">Ukyo Saionji</option>
+<option value="Kaseki">Kaseki</option>
+<option value="Suika">Suika</option>
+
+<option value="Jinwoo">Sung Jin-Woo</option>
+<option value="ChaHae">Cha Hae-In</option>
+
+<option value="NarutoSage">Naruto Modo Sábio</option>
+
+<option value="KiraDeath">Kira</option>
+
+<option value="Akaza">Akaza</option>
+<option value="Muzan">Muzan Kibutsuji</option>
+<option value="Giyu">Giyu Tomioka</option>
+<option value="Muichiro">Muichiro Tokito</option>
+
+<option value="Kanao">Kanao Tsuyuri</option>
+
+<option value="Yorichi">Yoriichi Tsugikuni</option>
+
+<option value="Kisame">Kisame Hoshigaki</option>
+<option value="Pain">Pain Nagato</option>
+<option value="Konan">Konan</option>
+
+<option value="Zabuza">Zabuza Momochi</option>
+<option value="Haku">Haku</option>
+
+<option value="Shoto">Shoto Todoroki</option>
+<option value="Endeavor">Endeavor</option>
+<option value="Hawks">Hawks</option>
+
+<option value="Aizawa">Shota Aizawa</option>
+
+<option value="TengenTop">Tengen Uzui</option>
+
+<option value="ZeroTwo">Zero Two</option>
+<option value="Hiro">Hiro</option>
+
+<option value="Mikasa2">Mikasa Ackerman</option>
+
+<option value="Hachiman">Hachiman Hikigaya</option>
+
+<option value="Mai">Mai Sakurajima</option>
+
+<option value="Kaguya">Kaguya Shinomiya</option>
+
+<option value="Shirogane">Miyuki Shirogane</option>
+
+
+
+<option value="Lelouch">Lelouch Lamperouge</option>
+<option value="Suzaku">Suzaku Kururugi</option>
+
+<option value="Kiritsugu">Kiritsugu Emiya</option>
+<option value="Shirou">Shirou Emiya</option>
+
+<option value="Tatsumaki">Tatsumaki</option>
+<option value="Fubuki">Fubuki</option>
+
+<option value="Garou">Garou</option>
+
+<option value="Himura">Himura Kenshin</option>
+
+<option value="Johan">Johan Liebert</option>
+
+<option value="Misa">Misa Amane</option>
+
+<option value="Nishinoya">Nishinoya</option>
+<option value="Oikawa">Oikawa Toru</option>
+
+<option value="Isagi">Yoichi Isagi</option>
+<option value="Bachira">Meguru Bachira</option>
+<option value="RinItoshi">Rin Itoshi</option>
+<option value="Nagi">Seishiro Nagi</option>
+
+<option value="ReiAyanami">Rei Ayanami</option>
+
+<option value="Sasori">Sasori</option>
+<option value="Deidara">Deidara</option>
+<option value="Kakuzu">Kakuzu</option>
+<option value="Hidan">Hidan</option>
+
+<option value="Minato">Minato Namikaze</option>
+<option value="Kushina">Kushina Uzumaki</option>
+
+<option value="Yhwach">Yhwach</option>
+<option value="Kenpachi">Kenpachi Zaraki</option>
+<option value="Toshiro">Toshiro Hitsugaya</option>
+
+<option value="MightGuy">Might Guy</option>
+
+<option value="YamiBlack">Yami Sukehiro</option>
+<option value="Noelle">Noelle Silva</option>
+
+<option value="Vanitas">Vanitas</option>
+
+<option value="Rudeus">Rudeus Greyrat</option>
+<option value="Eris">Eris Boreas</option>
+
+<option value="Kiyotaka">Kiyotaka Ayanokoji</option>
+
+<option value="Lina">Lina Inverse</option>
+
+<option value="Haruhi">Haruhi Suzumiya</option>
+
+<option value="RinKak">Rin Okumura</option>
+
+<option value="YunoGasai">Yuno Gasai</option>
+
+<option value="LucyElfen">Lucy</option>
+
+<option value="KiraJojo">Kira Yoshikage</option>
+
+<option value="Jonathan">Jonathan Joestar</option>
+<option value="Joseph">Joseph Joestar</option>
+
+<option value="Dazai">Osamu Dazai</option>
+<option value="Chuuya">Chuuya Nakahara</option>
+
+<option value="Atsushi">Atsushi Nakajima</option>
+
+<option value="Mori">Oda Sakunosuke</option>
+</select>
+
+
+</section>
+
+
+
+
+
+<main id="chat">
+
+
+</main>
+
+
+
+
+
+<footer>
+
+
+
+<div class="contador">
+
+
+<span id="contadorChar">
+0
+</span>
+
+/55
+
+
+</div>
+
+
+
+
+
+<div class="caixa">
+
+
+
+<input
+
+id="msg"
+
+maxlength="55"
+
+placeholder="Digite uma mensagem..."
+
+>
+
+
+
+
+<button onclick="enviar()">
+
+
+>
+
+</button>
+
+
+
+</div>
+
+
+
+</footer>
+
+
+
+
+
+
+
+
+<!-- PAGAMENTO -->
+
+<section id="sectionPagamento">
+
+
+
+<h2>
+<center>
+Comprar mensagens
+</center>
+</h2>
+
+
+
+
+<p>
+<center>
+Escolha um pacote
+</center>
+</p>
+
+
+
+
+<div class="pacotes">
+
+<center>
+
+<button onclick="comprarPacote(10,0.99)">
+
+
+10 mensagens
+
+<br>
+
+0.99$
+
+
+</button>
+
+
+
+
+
+<button onclick="comprarPacote(100,4.99)">
+
+
+100 mensagens
+
+<br>
+
+4.99$
+
+
+</button>
+
+
+
+
+
+<button onclick="comprarPacote(300,9.99)">
+
+
+300 mensagens
+
+<br>
+
+9.99$
+
+
+</button>
+
+</center>
+
+</div>
+
+
+
+
+
+<div id="paypal-button-container">
+
+
+</div>
+
+
+
+
+
+<button onclick="fecharPagamento()" id="voltar">
+
+
+Voltar
+
+
+</button>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<script src="https://www.paypal.com/sdk/js?client-id=BAA-3-NkjbeA-OfsTwt-5fkEkom5bdTEMQUi3yIt5VCejltB9eWMpn8Qd_VQ2l6V_Axh7M2U9AYkeXdv7I&currency=USD"></script>
+
+
+
+<script type="module" src="chatboot.js"></script>
+
+
+<script type="module" src="paypal.js"></script>
+
+
+
+</body>
+
+
+</html>

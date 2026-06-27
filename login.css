@@ -1,0 +1,293 @@
+* {
+  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  
+  font-family: Arial;
+  
+}
+
+
+
+body {
+  
+  height: 100vh;
+  
+  background: #05000f;
+  
+  color: white;
+  
+  display: flex;
+  
+  justify-content: center;
+  
+  align-items: center;
+  
+}
+
+
+
+.card {
+  
+  
+  width: 90%;
+  
+  max-width: 400px;
+  
+  
+  background: #120022;
+  
+  
+  padding: 35px;
+  
+  
+  border-radius: 20px;
+  
+  
+  border: 1px solid #5b1fa6;
+  
+  
+  box-shadow: 0 0 25px #8a2be255;
+  
+  
+  text-align: center;
+  
+  
+}
+
+
+
+h1 {
+  
+  
+  font-size: 32px;
+  
+  letter-spacing: 3px;
+  
+  color: #c77dff;
+  
+  
+}
+
+
+
+p {
+  
+  color: #aaa;
+  
+  margin: 15px 0 25px;
+  
+}
+
+
+
+input {
+  
+  
+  width: 100%;
+  
+  
+  padding: 15px;
+  
+  
+  margin: 10px 0;
+  
+  
+  background: #050008;
+  
+  
+  border: 1px solid #6420aa;
+  
+  
+  border-radius: 12px;
+  
+  
+  color: white;
+  
+  
+  font-size: 16px;
+  
+  
+}
+
+
+
+input:focus {
+  
+  outline: none;
+  
+  border-color: #c77dff;
+  
+}
+
+
+
+button {
+  
+  
+  width: 100%;
+  
+  
+  padding: 15px;
+  
+  
+  margin-top: 15px;
+  
+  
+  background: #8a2be2;
+  
+  
+  color: white;
+  
+  
+  border: none;
+  
+  
+  border-radius: 12px;
+  
+  
+  font-weight: bold;
+  
+  
+  font-size: 16px;
+  
+  
+  box-shadow: 0 0 15px #8a2be255;
+  
+  
+}
+
+
+
+button:active {
+  
+  transform: scale(.97);
+  
+}
+
+
+
+
+.google {
+  
+  
+  background: #1d1230;
+  
+  
+  color: white;
+  
+  
+  border: 1px solid #6420aa;
+  
+  
+}
+
+
+
+.linha {
+  
+  
+  margin: 25px 0;
+  
+  
+  border-bottom: 1px solid #442060;
+  
+  
+}
+
+
+
+.linha span {
+  
+  
+  background: #120022;
+  
+  
+  padding: 10px;
+  
+  
+  color: #aaa;
+  
+  
+}
+
+
+
+a {
+  
+  
+  color: #c77dff;
+  
+  text-decoration: none;
+  
+  font-weight: bold;
+  
+  
+}
+
+
+
+
+
+#loader {
+  
+  
+  position: fixed;
+  
+  
+  inset: 0;
+  
+  
+  background: #000000cc;
+  
+  
+  display: none;
+  
+  
+  justify-content: center;
+  
+  
+  align-items: center;
+  
+  
+}
+
+
+
+.load {
+  
+  
+  width: 45px;
+  
+  
+  height: 45px;
+  
+  
+  border: 4px solid #321050;
+  
+  
+  border-top: 4px solid #c77dff;
+  
+  
+  border-radius: 50%;
+  
+  
+  animation: girar 1s linear infinite;
+  
+  
+}
+
+
+
+@keyframes girar {
+  
+  
+  to {
+    
+    transform: rotate(360deg);
+    
+  }
+  
+  
+}
