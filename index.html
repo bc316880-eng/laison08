@@ -1,110 +1,116 @@
 <!DOCTYPE html>
 <html lang="pt">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teste Supabase GROQ</title>
 
-<title>Laison</title>
+<style>
+body{
+    font-family:Arial,sans-serif;
+    background:#121212;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    margin:0;
+}
+.container{
+    width:90%;
+    max-width:500px;
+    background:#1e1e1e;
+    padding:20px;
+    border-radius:12px;
+}
+textarea{
+    width:100%;
+    height:120px;
+    padding:10px;
+    border:none;
+    border-radius:8px;
+    margin-bottom:10px;
+    resize:none;
+}
+button{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    background:#6c63ff;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+button:hover{
+    background:#5a52e0;
+}
+pre{
+    background:#000;
+    color:#00ff88;
+    padding:10px;
+    border-radius:8px;
+    margin-top:15px;
+    white-space:pre-wrap;
+}
+</style>
 
-<link rel="stylesheet" href="index.css">
-<link rel="manifest" href="manifest.json">
-
-<meta name="theme-color" content="black">
-<link rel="shortcut icon" href="icon-512.png" type="image/x-icon" />
-<meta name="application-name" content="Laison">
-
-<link rel="apple-touch-icon" href="icon-192.png">
 </head>
-
-
 <body>
 
+<div class="container">
 
-<div class="card">
+<h2>Teste da Edge Function</h2>
 
+<textarea id="message" placeholder="Digite uma mensagem..."></textarea>
 
-<h1>Laison</h1>
-
-<p>Crie sua conta</p>
-
-
-<form id="registerForm">
-
-
-<input 
-id="name"
-type="text"
-placeholder="Nome"
-required
->
-
-
-<input 
-id="email"
-type="email"
-placeholder="Email"
-required
->
-
-
-<input 
-id="password"
-type="password"
-placeholder="Senha"
-required
->
-
-
-<button type="submit">
-
-Criar conta
-
+<button onclick="enviar()">
+Enviar
 </button>
 
-
-</form>
-
-
-<div class="linha">
-
-<span>ou</span>
+<pre id="resultado">Aguardando...</pre>
 
 </div>
 
+<script>
 
-<button id="google" class="google">
+const SUPABASE_URL =
+"https://eqvntuiwxwygtjgaccfa.supabase.co/functions/v1/GROQ";
 
-Continuar com Google
+const API_KEY =
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVxdm50dWl3eHd5Z3RqZ2FjY2ZhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ3MDM4MDYsImV4cCI6MjEwMDI3OTgwNn0.2IpQGth9u34pJgf5QT5jsUtZsJz_MB6eyx-Xm2Ffcac";
 
-</button>
+async function enviar(){
 
+const mensagem =
+document.getElementById("message").value;
 
-<p class="login">
+const resposta =
+await fetch(SUPABASE_URL,{
 
-Já tenho uma conta <a href="login.html">fazer login</a>
+method:"POST",
 
+headers:{
+"Authorization":"Bearer "+API_KEY,
+"apikey":API_KEY,
+"Content-Type":"application/json"
+},
 
-</p>
+body:JSON.stringify({
+message:mensagem
+})
 
-</div>
+});
 
+const texto =
+await resposta.text();
 
+document.getElementById("resultado").textContent =
+texto;
 
-<div id="loader">
+}
 
-
-<div class="load"></div>
-
-
-</div>
-
-
-
-<script type="module" src="index.js"></script>
-
+</script>
 
 </body>
-
 </html>
