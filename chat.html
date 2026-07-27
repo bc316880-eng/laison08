@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+
+<html lang="pt">
+
+
+<head>
+
+
+<meta charset="UTF-8">
+
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+
+
+<title>
+Laison 
+</title>
+
+
+
+<!-- Fonte -->
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+
+
+
+
+<!-- Ícones -->
+
+<script src="https://unpkg.com/lucide@latest"></script>
+
+
+
+
+
+<!-- CSS -->
+
+<link rel="stylesheet"
+href="style.css">
+
+
+
+</head>
+
+
+
+
+
+<body>
+
+
+
+
+
+<!-- ==========================
+     TELA DE CARREGAMENTO
+========================== -->
+
+
+<div id="loading"
+class="loading">
+
+
+<div class="loader"></div>
+
+
+<p>
+
+A carregar conversa...
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- ==========================
+     OVERLAY DO MENU
+========================== -->
+
+
+<div id="overlay"
+class="overlay">
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- ==========================
+     MENU DE CONVERSAS
+========================== -->
+
+
+<aside
+id="menu"
+class="menu">
+
+
+
+<div class="menu-header">
+
+
+
+<h2>
+Conversas
+</h2>
+
+
+
+
+
+<button
+id="closeMenu"
+class="icon-btn">
+
+
+<i data-lucide="x"></i>
+
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+
+
+<div
+id="conversationList"
+class="conversation-list">
+
+
+<!--
+
+Firebase vai colocar aqui:
+
+Conversa
+
+Última mensagem
+
+Data
+
+Hora
+
+
+Exemplo:
+
+Olá, tudo bem?
+
+26/07/2026
+18:30
+
+
+-->
+
+
+</div>
+
+
+
+
+
+</aside>
+
+
+
+
+
+
+
+
+
+<!-- ==========================
+     APLICAÇÃO PRINCIPAL
+========================== -->
+
+
+<div
+class="app">
+
+
+
+
+
+
+<!-- ==========================
+     BARRA SUPERIOR
+========================== -->
+
+
+<header
+class="topbar">
+
+
+
+<button
+id="openMenu"
+class="icon-btn">
+
+
+<i data-lucide="menu"></i>
+
+
+</button>
+
+
+
+
+
+
+
+<div
+class="brand">
+
+
+<h1>
+Laison 
+</h1>
+
+
+
+<span
+id="status">
+
+Online
+
+</span>
+
+
+
+</div>
+
+
+
+
+
+
+
+<button
+id="newChat"
+class="icon-btn"
+title="Nova conversa">
+
+
+<i data-lucide="square-pen"></i>
+
+
+</button>
+
+
+
+
+</header>
+<!-- ==========================
+     ÁREA DE MENSAGENS
+========================== -->
+
+
+<main
+id="messages"
+class="messages">
+
+
+<!--
+As mensagens serão
+adicionadas pelo JavaScript.
+
+
+Exemplo:
+
+
+<div class="message user">
+
+Olá
+
+<div class="time">
+
+18:30
+
+</div>
+
+</div>
+
+
+
+<div class="message ai">
+
+Olá, como posso ajudar?
+
+<div class="time">
+
+18:31
+
+</div>
+
+</div>
+
+
+-->
+
+
+
+</main>
+
+
+
+
+
+
+
+
+
+<!-- ==========================
+     INDICADOR DE DIGITAÇÃO
+========================== -->
+
+
+<div
+id="typing"
+class="typing">
+
+
+
+<div class="typing-dot"></div>
+
+<div class="typing-dot"></div>
+
+<div class="typing-dot"></div>
+
+
+
+<span>
+
+A IA está a escrever...
+
+</span>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- ==========================
+     ÁREA DE ENVIO
+========================== -->
+
+
+<footer
+class="input-area">
+
+
+
+<textarea
+
+id="messageInput"
+
+rows="1"
+
+placeholder="Digite uma mensagem..."
+
+></textarea>
+
+
+
+
+
+
+
+<button
+
+id="sendButton"
+
+class="send-button">
+
+
+<i data-lucide="send"></i>
+
+
+</button>
+
+
+
+
+</footer>
+<!-- ==========================
+     FECHAR APLICAÇÃO
+========================== -->
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- ==========================
+     JAVASCRIPT DO CHAT
+========================== -->
+
+
+<script
+type="module"
+src="chat.js">
+
+</script>
+
+
+
+
+
+<script>
+
+lucide.createIcons();
+
+</script>
+
+
+
+
+
+
+</body>
+
+
+</html>
