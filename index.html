@@ -1,676 +1,1387 @@
 <!DOCTYPE html>
+
 <html lang="pt">
 
 <head>
 
+
 <meta charset="UTF-8">
 
+
 <meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
 
 <title>Laison</title>
 
+
+<!-- DESCRIÇÃO PWA -->
+
+<meta name="description"
+content="Laison - Sua inteligência artificial pessoal">
+
+
+<!-- PWA -->
+
+<link rel="manifest"
+href="manifest.json">
+
+
+<meta name="theme-color"
+content="#8b0000">
+
+
+<meta name="mobile-web-app-capable"
+content="yes">
+
+
+<meta name="application-name"
+content="Laison">
+
+
+<!-- ANDROID -->
+
+<meta name="android-app-name"
+content="Laison">
+
+
+<!-- IOS -->
+
+<meta name="apple-mobile-web-app-capable"
+content="yes">
+
+
+<meta name="apple-mobile-web-app-status-bar-style"
+content="black">
+
+
+<meta name="apple-mobile-web-app-title"
+content="Laison">
+
+
+<link rel="apple-touch-icon"
+href="icon-192.png">
+
+
+<!-- WINDOWS -->
+
+<meta name="msapplication-TileColor"
+content="#050505">
+
+
+<meta name="msapplication-TileImage"
+content="icon-512.png">
+
+
+
+<!-- FAVICON -->
+
+<link rel="shortcut icon"
+href="icon.png"
+type="image/x-icon">
+
+
+
+<!-- FONTES -->
+
 <link rel="preconnect"
 href="https://fonts.googleapis.com">
+
 
 <link rel="preconnect"
 href="https://fonts.gstatic.com"
 crossorigin>
 
+
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
 rel="stylesheet">
 
+
+
+<!-- ICONES -->
+
 <script src="https://unpkg.com/lucide@latest"></script>
-<!-- PWA MANIFEST -->
-<link rel="manifest" href="manifest.json">
 
 
-<!-- COR DO NAVEGADOR -->
-<meta name="theme-color" content="#8b0000">
 
-
-<!-- SUPORTE IOS -->
-<meta name="apple-mobile-web-app-capable" content="yes">
-
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
-
-<meta name="apple-mobile-web-app-title" content="Laison">
-
-
-<link rel="apple-touch-icon" href="icon-192.png">
 <style>
+
 
 :root{
 
+
 --bg:#050505;
+
 --surface:#101010;
+
 --surface2:#181818;
 
+
 --red:#8b0000;
+
 --redLight:#d90429;
+
 
 --border:#351010;
 
+
 --text:#ffffff;
+
 --gray:#9a9a9a;
 
+
 }
+
+
 
 *{
 
+
 margin:0;
+
 padding:0;
+
 box-sizing:border-box;
+
 font-family:"Poppins",sans-serif;
+
 
 }
 
+
+
+html,
 body{
 
-width:100%;
-height:100vh;
 
-display:flex;
-justify-content:center;
-align-items:center;
+width:100%;
+
+height:100%;
+
 
 overflow:hidden;
 
-background:
-radial-gradient(circle at top,#250000,#050505 55%);
 
-color:var(--text);
+background:#050505;
+
+
+color:white;
+
 
 }
+
+
+
+body{
+
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+
+background:
+
+radial-gradient(
+circle at top,
+#250000,
+#050505 55%
+);
+
+
+}
+
+
 
 body::before{
 
+
 content:"";
 
+
 position:fixed;
+
 inset:0;
 
+
 background:
-radial-gradient(circle at 20% 20%,rgba(217,4,41,.15),transparent 30%),
-radial-gradient(circle at 80% 80%,rgba(217,4,41,.08),transparent 35%);
+
+radial-gradient(
+circle at 20% 20%,
+rgba(217,4,41,.15),
+transparent 30%
+),
+
+
+radial-gradient(
+circle at 80% 80%,
+rgba(217,4,41,.08),
+transparent 35%
+);
+
 
 pointer-events:none;
 
+
 }
+<style>
+
 
 .card{
 
+
 width:100%;
+
 max-width:430px;
+
 
 margin:20px;
 
+
 padding:35px 28px;
 
-background:rgba(15,15,15,.90);
 
-border:1px solid var(--border);
+background:
+
+rgba(15,15,15,.90);
+
+
+border:
+
+1px solid var(--border);
+
 
 border-radius:25px;
 
+
 backdrop-filter:blur(20px);
 
+
 box-shadow:
+
 0 20px 50px rgba(0,0,0,.55);
 
-animation:fade .5s ease;
+
+animation:
+
+fade .5s ease;
+
 
 }
+
+
 
 @keyframes fade{
 
+
 from{
 
+
 opacity:0;
+
 transform:translateY(20px);
 
+
 }
+
 
 to{
 
+
 opacity:1;
+
 transform:none;
 
-}
 
 }
+
+
+}
+
+
 
 .logo{
 
+
 display:flex;
+
 flex-direction:column;
+
 align-items:center;
+
 
 margin-bottom:35px;
 
+
 }
+
+
 
 .logo-icon{
 
+
 width:75px;
+
 height:75px;
+
 
 border-radius:22px;
 
+
 display:flex;
+
 align-items:center;
+
 justify-content:center;
 
+
 background:
-linear-gradient(135deg,
+
+
+linear-gradient(
+
+135deg,
+
 var(--red),
-var(--redLight));
+
+var(--redLight)
+
+);
+
 
 box-shadow:
+
+
 0 0 30px rgba(217,4,41,.45);
+
 
 margin-bottom:18px;
 
+
 }
+
+
 
 .logo-icon i{
 
+
 width:35px;
+
 height:35px;
+
+
 color:white;
 
+
 }
+
+
 
 .logo h1{
 
+
 font-size:30px;
+
+
 font-weight:700;
 
+
 }
+
+
 
 .logo p{
 
+
 margin-top:6px;
+
 
 font-size:14px;
 
+
 color:var(--gray);
 
+
 }
+
+
 
 .alert{
 
+
 display:none;
+
 
 padding:12px;
 
+
 margin-bottom:20px;
+
 
 border-radius:15px;
 
+
 background:#2a0b0b;
 
-border:1px solid var(--redLight);
+
+border:
+
+1px solid var(--redLight);
+
 
 color:#ff9b9b;
 
+
 font-size:14px;
 
+
 }
+
+
 
 .form{
 
+
 display:none;
 
+
 }
+
+
 
 .form.active{
 
+
 display:block;
 
+
 }
+
+
 
 .input-group{
 
+
 margin-bottom:18px;
 
+
 }
+
+
 
 .input-group label{
 
+
 display:block;
+
 
 font-size:13px;
 
+
 margin-bottom:8px;
+
 
 color:#bbb;
 
+
 }
+
+
 
 .input{
 
+
 position:relative;
 
+
 }
+
+
 
 .input input{
 
+
 width:100%;
+
 
 height:52px;
 
-padding:0 50px 0 45px;
+
+padding:
+
+0 50px 0 45px;
+
 
 background:#171717;
 
-border:1px solid var(--border);
+
+border:
+
+1px solid var(--border);
+
 
 border-radius:16px;
 
+
 color:white;
+
 
 outline:none;
 
+
 font-size:15px;
+
 
 transition:.25s;
 
+
 }
+
+
 
 .input input:focus{
 
+
 border-color:var(--redLight);
 
+
+
 box-shadow:
+
+
 0 0 15px rgba(217,4,41,.2);
 
+
 }
+
+
 
 .input .left{
 
+
 position:absolute;
 
+
 left:15px;
+
+
 top:50%;
 
+
 transform:translateY(-50%);
+
 
 color:#888;
 
+
 }
+
+
 
 .toggle{
 
+
 position:absolute;
 
+
 right:15px;
+
+
 top:50%;
+
 
 transform:translateY(-50%);
 
+
 background:none;
 
+
 border:none;
+
 
 color:#999;
 
+
 cursor:pointer;
 
+
 }
+
+
+
 .btn{
+
 
 width:100%;
 
+
 height:54px;
 
+
 border:none;
+
 
 border-radius:16px;
 
+
+
 background:
+
+
 linear-gradient(
+
 135deg,
+
 var(--red),
+
 var(--redLight)
+
 );
+
+
 
 color:white;
 
+
 font-size:16px;
+
 
 font-weight:600;
 
+
 cursor:pointer;
+
 
 display:flex;
 
+
 align-items:center;
+
 
 justify-content:center;
 
+
 gap:10px;
+
 
 margin-top:10px;
 
+
+
 transition:.25s;
 
+
+
 box-shadow:
+
+
 0 10px 25px rgba(217,4,41,.25);
 
+
+
 }
+
+
 
 .btn:hover{
 
+
 transform:translateY(-2px);
 
+
+
 box-shadow:
+
+
 0 15px 35px rgba(217,4,41,.35);
 
+
+
 }
+
+
 
 .btn:disabled{
 
+
 opacity:.7;
+
 
 cursor:not-allowed;
 
+
 transform:none;
 
+
 }
+
+
 
 .spinner{
 
+
 width:20px;
+
 
 height:20px;
 
+
 border-radius:50%;
 
-border:2px solid rgba(255,255,255,.35);
+
+border:
+
+2px solid rgba(255,255,255,.35);
+
+
 
 border-top-color:white;
 
+
 display:none;
 
-animation:spin .8s linear infinite;
+
+animation:
+
+spin .8s linear infinite;
+
 
 }
+
+
+
+@keyframes spin{
+
+
+from{
+
+
+transform:rotate(0deg);
+
+
+}
+
+
+to{
+
+
+transform:rotate(360deg);
+
+
+}
+
+
+}
+
+
 
 .footer{
 
+
 margin-top:22px;
+
 
 text-align:center;
 
+
 font-size:14px;
+
 
 color:var(--gray);
 
+
 }
+
+
 
 .footer button{
 
+
 background:none;
+
 
 border:none;
 
+
 color:var(--redLight);
+
 
 cursor:pointer;
 
+
 font-size:14px;
+
 
 font-weight:600;
 
+
 }
+
+
 
 .footer button:hover{
 
+
 text-decoration:underline;
 
+
 }
+
+
 
 @media(max-width:480px){
 
+
+
 .card{
+
 
 margin:15px;
 
+
 padding:25px 20px;
 
+
 }
+
+
 
 .logo h1{
 
+
 font-size:25px;
 
-}
 
 }
+
+
+
+}
+
 
 </style>
-
 </head>
+
 
 <body>
 
+
+
 <div class="card">
+
+
+
+<!-- LOGO -->
 
 <div class="logo">
 
+
 <div class="logo-icon">
+
 
 <i data-lucide="bot"></i>
 
+
 </div>
 
-<h1>Laison</h1>
+
+
+<h1>
+Laison
+</h1>
+
+
 
 <p id="subtitle">
 Entre para continuar
 </p>
 
+
+
 </div>
+
+
+
+
+
+<!-- ALERTAS -->
 
 <div
 id="alert"
 class="alert">
+
 </div>
 
+
+
+
+
+
 <!-- LOGIN -->
+
 
 <div
 id="loginForm"
 class="form active">
 
+
+
 <div class="input-group">
 
-<label>E-mail</label>
+
+<label>
+E-mail
+</label>
+
 
 <div class="input">
+
+
 
 <i
 data-lucide="mail"
-class="left"></i>
+class="left">
+</i>
+
+
 
 <input
+
 id="loginEmail"
+
 type="email"
-placeholder="Digite seu e-mail">
+
+placeholder="Digite seu e-mail"
+
+autocomplete="email"
+
+>
+
+
 
 </div>
 
+
 </div>
+
+
+
+
+
 
 <div class="input-group">
 
-<label>Senha</label>
+
+<label>
+Senha
+</label>
+
+
 
 <div class="input">
 
+
+
 <i
 data-lucide="lock"
-class="left"></i>
+class="left">
+
+</i>
+
+
 
 <input
+
 id="loginPassword"
+
 type="password"
-placeholder="Digite sua senha">
+
+placeholder="Digite sua senha"
+
+autocomplete="current-password"
+
+>
+
+
+
 
 <button
+
 class="toggle"
-onclick="togglePassword('loginPassword',this)">
+
+onclick="togglePassword('loginPassword',this)"
+
+type="button"
+
+>
+
 
 <i
 data-lucide="eye">
+
 </i>
+
 
 </button>
 
-</div>
+
 
 </div>
+
+
+</div>
+
+
+
+
+
 
 <button
+
 id="loginBtn"
-class="btn">
+
+class="btn"
+
+>
+
+
 
 <div
+
 id="loginSpinner"
+
 class="spinner">
+
 </div>
+
+
 
 <span>
 Entrar
 </span>
 
+
+
 </button>
 
+
+
+
+
+
 <div class="footer">
+
 
 Ainda não possui conta?
 
+
+
 <button
-id="openSignup">
+
+id="openSignup"
+
+>
+
 
 Criar conta
 
+
 </button>
 
-</div>
+
 
 </div>
+
+
+
+</div>
+
+
+
+
+
+
+
 
 <!-- CADASTRO -->
 
+
 <div
+
 id="signupForm"
-class="form">
+
+class="form"
+
+>
+
+
 
 <div class="input-group">
 
-<label>Nome</label>
+
+<label>
+Nome
+</label>
+
+
 
 <div class="input">
 
+
 <i
+
 data-lucide="user"
+
 class="left">
+
 </i>
 
+
+
 <input
+
 id="signupName"
+
 type="text"
-placeholder="Seu nome">
+
+placeholder="Seu nome"
+
+autocomplete="name"
+
+>
+
+
 
 </div>
 
+
 </div>
+
+
+
+
+
+
 
 <div class="input-group">
 
-<label>E-mail</label>
+
+<label>
+E-mail
+</label>
+
+
+
 
 <div class="input">
 
+
 <i
+
 data-lucide="mail"
+
 class="left">
+
 </i>
 
+
+
+
 <input
+
 id="signupEmail"
+
 type="email"
-placeholder="Digite seu e-mail">
+
+placeholder="Digite seu e-mail"
+
+autocomplete="email"
+
+>
+
+
 
 </div>
 
+
+
 </div>
+
+
+
+
+
+
+
+
 
 <div class="input-group">
 
-<label>Senha</label>
+
+<label>
+Senha
+</label>
+
+
+
 
 <div class="input">
 
+
+
 <i
+
 data-lucide="lock"
+
 class="left">
+
 </i>
 
+
+
+
+
 <input
+
 id="signupPassword"
+
 type="password"
-placeholder="Mínimo 6 caracteres">
+
+placeholder="Mínimo 6 caracteres"
+
+autocomplete="new-password"
+
+>
+
+
+
+
+
 
 <button
+
 class="toggle"
-onclick="togglePassword('signupPassword',this)">
+
+onclick="togglePassword('signupPassword',this)"
+
+type="button"
+
+>
+
+
 
 <i
+
 data-lucide="eye">
+
 </i>
+
+
 
 </button>
 
-</div>
+
+
 
 </div>
+
+
+
+</div>
+
+
+
+
+
+
 
 <button
+
 id="signupBtn"
-class="btn">
+
+class="btn"
+
+>
+
+
 
 <div
+
 id="signupSpinner"
+
 class="spinner">
+
 </div>
+
+
+
 
 <span>
+
 Criar Conta
+
 </span>
 
+
+
 </button>
+
+
+
+
+
+
 
 <div class="footer">
 
+
 Já possui uma conta?
 
+
+
 <button
-id="openLogin">
+
+id="openLogin"
+
+>
+
 
 Entrar
 
+
 </button>
 
+
+
 </div>
+
+
+
+
+
+</div>
+
+
+
+
 
 </div>
 <script type="module">
 
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+
+import {
+
+initializeApp
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+
+
 
 import {
 
@@ -683,7 +1394,12 @@ createUserWithEmailAndPassword,
 updateProfile
 
 }
-from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+from
+
+"https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+
 
 import {
 
@@ -694,339 +1410,671 @@ ref,
 set
 
 }
-from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
-/*=========================
- FIREBASE
-=========================*/
+from
+
+"https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+
+
+
+
+/*
+=========================
+ FIREBASE CONFIG
+=========================
+*/
+
 
 const firebaseConfig={
 
+
 apiKey:"AIzaSyDsP7lNqu-tDpJxpsyv8t1DW0M_u2EAE3o",
+
 
 authDomain:"bartolomeu-cruz.firebaseapp.com",
 
+
 databaseURL:"https://bartolomeu-cruz-default-rtdb.firebaseio.com",
+
 
 projectId:"bartolomeu-cruz",
 
+
 storageBucket:"bartolomeu-cruz.appspot.com",
+
 
 messagingSenderId:"408863884951",
 
+
 appId:"1:408863884951:web:13e8c2282139c1307dcbd2"
+
 
 };
 
+
+
+
 const app=initializeApp(firebaseConfig);
+
 
 const auth=getAuth(app);
 
+
 const db=getDatabase(app);
 
-/*=========================
+
+
+
+
+
+/*
+=========================
  ELEMENTOS
-=========================*/
+=========================
+*/
+
 
 const loginForm=document.getElementById("loginForm");
 
 const signupForm=document.getElementById("signupForm");
 
+
 const subtitle=document.getElementById("subtitle");
 
+
 const alertBox=document.getElementById("alert");
+
 
 const loginBtn=document.getElementById("loginBtn");
 
 const signupBtn=document.getElementById("signupBtn");
 
+
 const loginSpinner=document.getElementById("loginSpinner");
 
 const signupSpinner=document.getElementById("signupSpinner");
 
-/*=========================
- LUCIDE
-=========================*/
+
+
+
+
+
+/*
+=========================
+ ICONES
+=========================
+*/
+
 
 lucide.createIcons();
 
-/*=========================
- ALERTA
-=========================*/
 
-function mostrarErro(texto){
+
+
+
+
+
+/*
+=========================
+ ALERTAS
+=========================
+*/
+
+
+function mostrarErro(msg){
+
 
 alertBox.style.display="block";
 
-alertBox.innerHTML=texto;
+
+alertBox.innerHTML=msg;
+
 
 }
+
+
 
 function esconderErro(){
 
+
 alertBox.style.display="none";
+
 
 }
 
-/*=========================
- TROCAR LOGIN/CADASTRO
-=========================*/
 
-document.getElementById("openSignup").onclick=()=>{
+
+
+
+
+
+
+/*
+=========================
+ TROCAR TELAS
+=========================
+*/
+
+
+document
+.getElementById("openSignup")
+.onclick=()=>{
+
 
 esconderErro();
+
 
 loginForm.classList.remove("active");
 
+
 signupForm.classList.add("active");
+
 
 subtitle.innerHTML="Crie sua conta";
 
+
 };
 
-document.getElementById("openLogin").onclick=()=>{
+
+
+
+
+document
+.getElementById("openLogin")
+.onclick=()=>{
+
 
 esconderErro();
+
 
 signupForm.classList.remove("active");
 
+
 loginForm.classList.add("active");
+
 
 subtitle.innerHTML="Entre para continuar";
 
+
 };
 
-/*=========================
+
+
+
+
+
+
+
+
+/*
+=========================
  MOSTRAR SENHA
-=========================*/
+=========================
+*/
+
 
 window.togglePassword=(id,btn)=>{
 
+
 const input=document.getElementById(id);
+
 
 const icon=btn.querySelector("i");
 
+
+
 if(input.type==="password"){
+
 
 input.type="text";
 
-icon.setAttribute("data-lucide","eye-off");
+
+icon.setAttribute(
+"data-lucide",
+"eye-off"
+);
+
+
 
 }else{
 
+
 input.type="password";
 
-icon.setAttribute("data-lucide","eye");
+
+icon.setAttribute(
+"data-lucide",
+"eye"
+);
+
 
 }
 
+
 lucide.createIcons();
+
 
 };
 
-/*=========================
- LOADING BOTÃO
-=========================*/
 
-function loading(botao,spinner,status){
 
-botao.disabled=status;
 
-spinner.style.display=status?"block":"none";
 
-}/*=========================
+
+
+
+/*
+=========================
+ LOADING
+=========================
+*/
+
+
+function loading(btn,spin,state){
+
+
+btn.disabled=state;
+
+
+spin.style.display=
+state ? "block" : "none";
+
+
+}
+
+
+
+
+
+
+
+
+
+
+/*
+=========================
  LOGIN
-=========================*/
+=========================
+*/
+
 
 loginBtn.onclick=async()=>{
 
+
 esconderErro();
 
-const email=document.getElementById("loginEmail").value.trim();
 
-const password=document.getElementById("loginPassword").value;
 
-if(!email||!password){
+const email=
+document.getElementById("loginEmail").value.trim();
 
-mostrarErro("Preencha todos os campos.");
+
+
+const password=
+document.getElementById("loginPassword").value;
+
+
+
+
+if(!email || !password){
+
+
+mostrarErro(
+"Preencha todos os campos."
+);
+
 
 return;
 
+
 }
 
-loading(loginBtn,loginSpinner,true);
+
+
+
+loading(
+loginBtn,
+loginSpinner,
+true
+);
+
+
+
+
 
 try{
 
-await signInWithEmailAndPassword(auth,email,password);
 
-// LOGIN OK
+await signInWithEmailAndPassword(
+auth,
+email,
+password
+);
+
+
+
 window.location.href="chat.html";
+
+
 
 }catch(error){
 
-loading(loginBtn,loginSpinner,false);
 
-switch(error.code){
 
-case "auth/invalid-credential":
+loading(
+loginBtn,
+loginSpinner,
+false
+);
 
-mostrarErro("E-mail ou senha incorretos.");
 
-break;
 
-case "auth/too-many-requests":
+if(error.code==="auth/invalid-credential"){
 
-mostrarErro("Muitas tentativas. Tente novamente mais tarde.");
 
-break;
+mostrarErro(
+"E-mail ou senha incorretos."
+);
 
-default:
 
-mostrarErro("Não foi possível iniciar sessão.");
+
+}else{
+
+
+mostrarErro(
+"Erro ao entrar na conta."
+);
+
+
 
 }
 
+
+
 }
+
+
 
 };
 
-/*=========================
+
+
+
+
+
+
+
+
+
+
+/*
+=========================
  CADASTRO
-=========================*/
+=========================
+*/
+
 
 signupBtn.onclick=async()=>{
 
+
 esconderErro();
 
-const nome=document.getElementById("signupName").value.trim();
 
-const email=document.getElementById("signupEmail").value.trim();
 
-const password=document.getElementById("signupPassword").value;
 
-if(!nome||!email||!password){
+const nome=
+document.getElementById("signupName").value.trim();
 
-mostrarErro("Preencha todos os campos.");
+
+
+const email=
+document.getElementById("signupEmail").value.trim();
+
+
+
+const password=
+document.getElementById("signupPassword").value;
+
+
+
+
+
+if(!nome || !email || !password){
+
+
+mostrarErro(
+"Preencha todos os campos."
+);
+
+
 
 return;
 
+
 }
 
-if(password.length<6){
 
-mostrarErro("A senha deve possuir pelo menos 6 caracteres.");
+
+
+if(password.length < 6){
+
+
+mostrarErro(
+"A senha deve ter no mínimo 6 caracteres."
+);
+
+
 
 return;
 
+
 }
 
-loading(signupBtn,signupSpinner,true);
+
+
+
+
+loading(
+signupBtn,
+signupSpinner,
+true
+);
+
+
+
+
+
 
 try{
 
-const cred=await createUserWithEmailAndPassword(auth,email,password);
 
-await updateProfile(cred.user,{
+
+const cred=
+await createUserWithEmailAndPassword(
+auth,
+email,
+password
+);
+
+
+
+
+
+await updateProfile(
+cred.user,
+{
 
 displayName:nome
 
-});
+}
 
-await set(ref(db,`users/${cred.user.uid}`),{
+);
+
+
+
+
+
+
+await set(
+
+ref(
+db,
+`users/${cred.user.uid}`
+),
+
+{
+
 
 name:nome,
 
+
 email:email,
+
 
 premium:false,
 
+
+coins:0,
+
+
+points:0,
+
+
+rank:"Novato",
+
+
 createdAt:Date.now()
 
-});
 
-// CADASTRO OK
+}
+
+
+);
+
+
+
+
+
 window.location.href="chat.html";
+
+
+
+
 
 }catch(error){
 
-loading(signupBtn,signupSpinner,false);
 
-switch(error.code){
 
-case "auth/email-already-in-use":
+loading(
+signupBtn,
+signupSpinner,
+false
+);
 
-mostrarErro("Este e-mail já está a ser utilizado.");
 
-break;
 
-case "auth/invalid-email":
 
-mostrarErro("E-mail inválido.");
+mostrarErro(
+"Erro ao criar conta."
+);
 
-break;
 
-case "auth/weak-password":
-
-mostrarErro("A senha é demasiado fraca.");
-
-break;
-
-default:
-
-mostrarErro("Erro ao criar a conta.");
 
 }
 
-}
+
 
 };
 
+
+
+
 </script>
+
+
+
+
 
 <script>
 
-lucide.createIcons();
 
-</script>
-<script>
+/*
+=========================
+ SERVICE WORKER PWA
+=========================
+*/
 
-if("serviceWorker" in navigator){
+
+if(
+"serviceWorker" in navigator
+){
+
+
 
 window.addEventListener(
 "load",
 ()=>{
 
 
-navigator.serviceWorker.register(
+navigator.serviceWorker
+.register(
 "service-worker.js"
 )
 
 .then(
-()=>{
+(reg)=>{
+
 
 console.log(
-"Laison PWA iniciado"
+"Laison PWA ativo"
 );
 
-})
-
-.catch(
-(error)=>{
-
-console.error(
-"Erro no PWA:",
-error
-);
-
-});
 
 
-});
+setInterval(()=>{
+
+
+reg.update();
+
+
+
+},60000);
+
+
 
 }
 
+)
+
+.catch(
+(err)=>{
+
+
+console.error(
+"Erro PWA:",
+err
+);
+
+
+
+});
+
+
+}
+
+);
+
+
+}
+
+
+
 </script>
+
+
+
 </body>
+
 
 </html>
